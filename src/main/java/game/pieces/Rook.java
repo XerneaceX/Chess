@@ -13,4 +13,9 @@ public class Rook extends Piece {
     public void capture() {
 
     }
+
+    @Override
+    protected boolean checkIfValidMove(int[] newPosition) {
+        return false;
+    }
 }

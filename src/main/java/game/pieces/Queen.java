@@ -14,4 +14,9 @@ public class Queen extends Piece {
     public void capture() {
 
     }
+
+    @Override
+    protected boolean checkIfValidMove(int[] newPosition) {
+        return false;
+    }
 }
