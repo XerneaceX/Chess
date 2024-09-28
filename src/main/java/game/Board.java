@@ -12,7 +12,7 @@ public class Board {
     public void setPieces() {
         //set all the pieces on the board
         this.board[0][0] = new Bishop(new int[]{0,0},'w');
-        this.board[1][1] = new Knight(new int[]{1,1},'b');
+        this.board[1][1] = new King(new int[]{1,1},'b');
     }
 
     public void printBoard() {
