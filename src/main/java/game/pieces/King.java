@@ -19,10 +19,15 @@ public class King extends Piece {
     }
 
     @Override
-    protected boolean checkIfValidMove(int[] newPosition) {
+    public int[][] getValidMoves() {
+        return new int[0][];
+    }
+
+    @Override
+    public boolean checkIfValidMove(int[] newPosition) {
         int[] oldPosition = this.pos;
 
-        if     (Math.abs(newPosition[0] - oldPosition[0]) == 1 && newPosition[1] == oldPosition[1] ||
+        if (Math.abs(newPosition[0] - oldPosition[0]) == 1 && newPosition[1] == oldPosition[1] ||
                 Math.abs(newPosition[1] - oldPosition[1]) == 1 && newPosition[0] == oldPosition[0] ||
                 Math.abs(newPosition[1] - oldPosition[1]) == 1 && Math.abs(newPosition[0] - oldPosition[0]) == 1) {
             //returns true if this is a valid move

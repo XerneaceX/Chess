@@ -2,6 +2,8 @@ package game;
 
 import game.pieces.*;
 
+import java.util.Arrays;
+
 public class Board {
     public Piece[][] board;
 
@@ -11,12 +13,13 @@ public class Board {
 
     public void setPieces() {
         //set all the pieces on the board
-        this.board[0][0] = new Bishop(new int[]{0,0},'w');
-        this.board[1][1] = new King(new int[]{1,1},'b');
+        this.board[1][1] = new Bishop(new int[]{1, 1}, 'w');
+        this.board[2][2] = new Bishop(new int[]{2, 2}, 'b');
+        this.board[3][3] = new Bishop(new int[]{3, 3}, 'b');
     }
 
     public void printBoard() {
-        for (int x = 0; x < this.board[0].length ; x++) {
+        for (int x = 0; x < this.board[0].length; x++) {
             for (int y = 0; y < this.board[x].length; y++) {
                 if (this.board[x][y] != null) {
                     System.out.print(" " + this.board[x][y].getClass().getSimpleName() + " ");
@@ -46,6 +49,9 @@ public class Board {
                 this.board[newPosition[0]][newPosition[1]].moved = true;
             }
         }
+
         printBoard();
+
+        System.out.println("----------------------------------");
     }
 }

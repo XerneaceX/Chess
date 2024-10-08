@@ -16,7 +16,12 @@ public class Queen extends Piece {
     }
 
     @Override
-    protected boolean checkIfValidMove(int[] newPosition) {
+    public int[][] getValidMoves() {
+        return new int[0][];
+    }
+
+    @Override
+    public boolean checkIfValidMove(int[] newPosition) {
         int[] oldPosition = this.pos;
         //check if valid move for bishop (if the move is in diagonal). We add +1 when dividing to avoid dividing by 0
         if (Math.abs(oldPosition[0] - newPosition[0]) == Math.abs(oldPosition[1] - newPosition[1])) {
