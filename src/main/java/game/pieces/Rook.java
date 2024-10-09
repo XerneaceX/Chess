@@ -1,6 +1,7 @@
 package game.pieces;
 
 public class Rook extends Piece {
+    int[][] moveArray;
     public Rook(int[] pos, char color) {
         super(pos, color);
     }
@@ -14,9 +15,8 @@ public class Rook extends Piece {
 
     }
 
-    @Override
     public int[][] getValidMoves() {
-        return new int[0][];
+        return super.getValidMoves(this.moveArray);
     }
 
     @Override

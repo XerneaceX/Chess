@@ -1,24 +1,30 @@
 package game;
 
 import game.pieces.*;
+import game.players.Player;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Board {
     public Piece[][] board;
+    public ArrayList<Piece> pieces;
+    private Player white, black;
 
     public Board() {
         this.board = new Piece[8][8];
+        white = new Player('w');
+        black = new Player('b');
     }
 
     public void setPieces() {
         //set all the pieces on the board
         this.board[1][1] = new Bishop(new int[]{1, 1}, 'w');
-        this.board[2][2] = new Bishop(new int[]{2, 2}, 'b');
-        this.board[3][3] = new Bishop(new int[]{3, 3}, 'b');
+        this.board[2][2] = new King(new int[]{2, 2}, 'b');
+        this.board[7][6] = new King(new int[]{7, 6}, 'w');
     }
 
     public void printBoard() {
+        System.out.println("-------------------------------------");
         for (int x = 0; x < this.board[0].length; x++) {
             for (int y = 0; y < this.board[x].length; y++) {
                 if (this.board[x][y] != null) {
@@ -27,11 +33,11 @@ public class Board {
             }
             System.out.println("\n");
         }
+        System.out.println("--------------------------------------");
     }
 
     public void movePiece(int[] oldPosition, int[] newPosition) {
-        System.out.println("------------------------------");
-        this.board[oldPosition[0]][oldPosition[1]].move(newPosition);
+        this.board[oldPosition[1]][oldPosition[1]].move(newPosition);
 
         //checks if the piece was moved. If it was; move it on board. If not;
         if (this.board[oldPosition[0]][oldPosition[1]].pos == newPosition) {
@@ -52,6 +58,8 @@ public class Board {
 
         printBoard();
 
-        System.out.println("----------------------------------");
+        System.out.println(black.kingIsInCheck());
     }
+
+
 }

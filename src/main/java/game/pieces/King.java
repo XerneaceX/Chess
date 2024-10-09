@@ -4,6 +4,16 @@ public class King extends Piece {
 
     public King(int[] pos, char color) {
         super(pos, color);
+        this.moveArray = new int[][]{
+                {-1, -1},
+                {-1, 0},
+                {0, -1},
+                {1, 0},
+                {0, 1},
+                {1, 1},
+                {-1, 1},
+                {1, -1}
+        };
     }
 
     @Override
@@ -18,23 +28,21 @@ public class King extends Piece {
 
     }
 
-    @Override
     public int[][] getValidMoves() {
-        return new int[0][];
+        return super.getValidMoves(this.moveArray);
     }
 
     @Override
     public boolean checkIfValidMove(int[] newPosition) {
-        int[] oldPosition = this.pos;
 
-        if (Math.abs(newPosition[0] - oldPosition[0]) == 1 && newPosition[1] == oldPosition[1] ||
-                Math.abs(newPosition[1] - oldPosition[1]) == 1 && newPosition[0] == oldPosition[0] ||
-                Math.abs(newPosition[1] - oldPosition[1]) == 1 && Math.abs(newPosition[0] - oldPosition[0]) == 1) {
-            //returns true if this is a valid move
-            return newPosition[0] <= 7 && newPosition[1] <= 7 && newPosition[0] >= 0 && newPosition[1] >= 0;
+        //check if newPosition is in the valid moves
+        for (int[] validMove : getValidMoves()) {
+            if (newPosition[0] == validMove[0] && newPosition[1] == validMove[1]) {
+                System.out.println("VALID MOVE!");
+                return true;
+            }
         }
         //if not a valid move;
-        System.out.println("Invalid move");
         return false;
     }
 }

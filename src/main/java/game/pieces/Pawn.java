@@ -1,6 +1,7 @@
 package game.pieces;
 
 public class Pawn extends Piece {
+    int[][] moveArray;
     public Pawn(int[] pos, char color) {
         super(pos, color);
     }
@@ -15,9 +16,8 @@ public class Pawn extends Piece {
 
     }
 
-    @Override
     public int[][] getValidMoves() {
-        return new int[0][];
+        return super.getValidMoves(this.moveArray);
     }
 
     @Override

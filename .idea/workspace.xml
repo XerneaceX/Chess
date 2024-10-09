@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7a2d98-9810-4ff5-ad3e-0dcbf96a15ca" name="Changes" comment="Added the king movement">
+    <list default="true" id="cb7a2d98-9810-4ff5-ad3e-0dcbf96a15ca" name="Changes" comment="Bishop now has move verification, will add move verification for the other pieces later">
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/players/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Main.java" afterDir="false" />
@@ -170,6 +171,9 @@
       <workItem from="1728087474818" duration="3527000" />
       <workItem from="1728133833073" duration="861000" />
       <workItem from="1728393084549" duration="2229000" />
+      <workItem from="1728395393113" duration="67000" />
+      <workItem from="1728410319417" duration="5196000" />
+      <workItem from="1728488446640" duration="4189000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -195,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727562258634</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Bishop now has move verification, will add move verification for the other pieces later">
+      <option name="closed" value="true" />
+      <created>1728395442752</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728395442752</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +217,8 @@
     <MESSAGE value="First Commit" />
     <MESSAGE value="Bishops can now move,&#10;Every other pieces can be placed, and be captured" />
     <MESSAGE value="Added the king movement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the king movement" />
+    <MESSAGE value="Bishop now has move verification, will add move verification for the other pieces later" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bishop now has move verification, will add move verification for the other pieces later" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
