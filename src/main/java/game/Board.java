@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Board {
     public Piece[][] board;
     public ArrayList<Piece> pieces;
-    private Player white, black;
+    public static Player white, black;
 
     public Board() {
         this.board = new Piece[8][8];
@@ -19,8 +19,12 @@ public class Board {
     public void setPieces() {
         //set all the pieces on the board
         this.board[1][1] = new Bishop(new int[]{1, 1}, 'w');
-        this.board[2][2] = new King(new int[]{2, 2}, 'b');
-        this.board[7][6] = new King(new int[]{7, 6}, 'w');
+        this.board[3][6] = new King(new int[]{3, 6}, 'w');
+
+        this.board[4][4] = new King(new int[]{4, 4}, 'b');
+        this.board[2][2] = new Bishop(new int[]{2, 2}, 'b');
+
+
     }
 
     public void printBoard() {
@@ -33,33 +37,14 @@ public class Board {
             }
             System.out.println("\n");
         }
-        System.out.println("--------------------------------------");
+        System.out.println("-------------------------------------");
     }
 
     public void movePiece(int[] oldPosition, int[] newPosition) {
-        this.board[oldPosition[1]][oldPosition[1]].move(newPosition);
-
-        //checks if the piece was moved. If it was; move it on board. If not;
-        if (this.board[oldPosition[0]][oldPosition[1]].pos == newPosition) {
-            //captures the piece if there's one
-            if (this.board[newPosition[0]][newPosition[1]] != null && this.board[newPosition[0]][newPosition[1]].color != this.board[oldPosition[0]][oldPosition[1]].color) {
-                this.board[newPosition[0]][newPosition[1]].isCaptured();
-                this.board[newPosition[0]][newPosition[1]] = null;
-            }
-
-            //changes the position of the piece on the board array. If a piece is there but wasn't captured, the piece won't move
-            if (this.board[newPosition[0]][newPosition[1]] == null) {
-
-                this.board[newPosition[0]][newPosition[1]] = this.board[oldPosition[0]][oldPosition[1]];
-                this.board[oldPosition[0]][oldPosition[1]] = null;
-                this.board[newPosition[0]][newPosition[1]].moved = true;
-            }
-        }
-
+        this.board[oldPosition[0]][oldPosition[1]].move(newPosition, false);
         printBoard();
-
-        System.out.println(black.kingIsInCheck());
     }
+
 
 
 }

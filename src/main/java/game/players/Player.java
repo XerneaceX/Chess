@@ -8,6 +8,7 @@ import static game.Main.board1;
 public class Player {
     public char color;
     public int[] kingPos;
+
     public Player(char color) {
         this.color = color;
     }
@@ -22,19 +23,14 @@ public class Player {
         }
     }
 
-    public ArrayList<int[][]> getEnemyControlledSquares() // I know
+    public ArrayList<int[][]> getEnemyControlledSquares()
     {
         ArrayList<int[][]> controlledSquares = new ArrayList<>();
         //Make a list of all controlled squares
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 if (board1.board[x][y] != null && board1.board[x][y].color != this.color) {
-                    System.out.println(board1.board[x][y].getClass().getSimpleName() + " at " + x + ", " + y);
-                    controlledSquares
-                            .add(board1.board[x][y]
-                            .getValidMoves(board1.board[x][y]
-                            .getMoveArray()));
-                    System.out.println(Arrays.deepToString(board1.board[x][y].getValidMoves(board1.board[x][y].getMoveArray())));;
+                    controlledSquares.add(board1.board[x][y].getValidMoves(board1.board[x][y].getMoveArray(), true));
                 }
             }
         }
@@ -43,8 +39,6 @@ public class Player {
 
     public boolean kingIsInCheck(){
         getKingPos();
-        System.out.print("King pos: ");
-        System.out.println(Arrays.toString(kingPos));
 
         for (int[][] moves : getEnemyControlledSquares()) {
             if (moves != null) {
