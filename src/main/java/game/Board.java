@@ -3,11 +3,8 @@ package game;
 import game.pieces.*;
 import game.players.Player;
 
-import java.util.ArrayList;
-
 public class Board {
     public Piece[][] board;
-    public ArrayList<Piece> pieces;
     public static Player white, black;
 
     public Board() {
@@ -18,13 +15,27 @@ public class Board {
 
     public void setPieces() {
         //set all the pieces on the board
-        this.board[1][1] = new Bishop(new int[]{1, 1}, 'w');
+        createPiece("Pawn", 'w', new int[]{0,0});
+
+
         this.board[3][6] = new King(new int[]{3, 6}, 'w');
-
         this.board[4][4] = new King(new int[]{4, 4}, 'b');
-        this.board[2][2] = new Bishop(new int[]{2, 2}, 'b');
+    }
 
+    public void createPiece(String pieceType, char color, int[] pos) {
+        switch (pieceType.toLowerCase()) {
+            case "bishop" -> this.board[pos[0]][pos[1]] = new Bishop(pos, color);
+            case "king" -> this.board[pos[0]][pos[1]] = new King(pos, color);
+            case "knight" -> this.board[pos[0]][pos[1]] = new Knight(pos, color);
+            case "pawn" -> this.board[pos[0]][pos[1]] = new Pawn(pos, color);
+            case "queen" -> this.board[pos[0]][pos[1]] = new Queen(pos, color);
+            case "rook" -> this.board[pos[0]][pos[1]] = new Rook(pos, color);
+            default -> throw new IllegalArgumentException("Invalid piece type");
+        }
+    }
 
+    public void createPiece(String pieceType, char color, int x, int y) {
+        createPiece(pieceType, color, new int[]{x, y});
     }
 
     public void printBoard() {
@@ -44,7 +55,6 @@ public class Board {
         this.board[oldPosition[0]][oldPosition[1]].move(newPosition, false);
         printBoard();
     }
-
 
 
 }

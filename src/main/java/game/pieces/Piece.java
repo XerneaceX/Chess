@@ -14,6 +14,7 @@ public abstract class Piece {
     public int[][] moveArray;
     public boolean captured;
     private Piece copyOfCaptured;
+    public boolean enPassant, pushedTwo, justPushedTwo;
 
     public Piece(int[] pos, char color) {
         this.pos = pos;
@@ -25,11 +26,7 @@ public abstract class Piece {
 
     public void move(int[] newPosition, boolean simulated) {
 
-        if (
-                simulated &&
-                        board1.board[newPosition[0]][newPosition[1]] != null &&
-                        board1.board[newPosition[0]][newPosition[1]].color != this.color
-        ) {
+        if (simulated && board1.board[newPosition[0]][newPosition[1]] != null && board1.board[newPosition[0]][newPosition[1]].color != this.color) {
             this.copyOfCaptured = board1.board[newPosition[0]][newPosition[1]];
         }
 
@@ -111,11 +108,11 @@ public abstract class Piece {
         int[] proposedMove;
         ArrayList<int[]> validMoves = new ArrayList<>();
         int max;
-        if (this.getClass().getSimpleName().equals("King")
-                || this.getClass().getSimpleName().equals("Knight")
-                || this.getClass().getSimpleName().equals("Pawn"))
+        if (this.getClass().getSimpleName().equals("King") || this.getClass().getSimpleName().equals("Knight") || this.getClass().getSimpleName().equals("Pawn")) {
             max = 2;
-        else max = 7;
+        } else {
+            max = 7;
+        }
 
         for (int[] ints : moveArray) {
             secondLoop:
@@ -124,29 +121,25 @@ public abstract class Piece {
 
                 //Check if move is out of bounds
                 if (
-                    proposedMove[0] < 8 &&
-                    proposedMove[1] < 8 &&
-                    proposedMove[0] >= 0 &&
-                    proposedMove[1] >= 0
+                        proposedMove[0] < 8 &&
+                                proposedMove[1] < 8 &&
+                                proposedMove[0] >= 0 &&
+                                proposedMove[1] >= 0
                 ) {
                     //Check if there's a piece in the way
                     if (board1.board[proposedMove[0]][proposedMove[1]] == null) {
                         if (simulated) {
                             validMoves.add(proposedMove);
-                        } else if (simulateMove(proposedMove) == true) {
+                        } else if (simulateMove(proposedMove)) {
                             validMoves.add(proposedMove);
-                        } else {
-                            System.out.println("Your king is pinned!");
                         }
                     } else {
                         //Check if it's a capture
                         if (board1.board[proposedMove[0]][proposedMove[1]].color != this.color) {
                             if (simulated) {
                                 validMoves.add(proposedMove);
-                            } else if (simulateMove(proposedMove) == true) {
+                            } else if (simulateMove(proposedMove)) {
                                 validMoves.add(proposedMove);
-                            } else {
-                                System.out.println("Your king is pinned!");
                             }
                         }
                         break secondLoop;
