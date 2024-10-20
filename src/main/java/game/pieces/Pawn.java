@@ -1,7 +1,6 @@
 package game.pieces;
 
 public class Pawn extends Piece {
-
     public Pawn(int[] pos, char color) {
         super(pos, color);
         this.pushedTwo = false;
@@ -21,6 +20,7 @@ public class Pawn extends Piece {
             }
         }
     }
+
     @Override
     public void capture() {
     }

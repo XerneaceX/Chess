@@ -1,7 +1,6 @@
 package game.pieces;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static game.Board.black;
 import static game.Board.white;
@@ -14,6 +13,7 @@ public abstract class Piece {
     public int[][] moveArray;
     public boolean captured;
     private Piece copyOfCaptured;
+
     public boolean enPassant, pushedTwo, justPushedTwo;
 
     public Piece(int[] pos, char color) {
@@ -29,7 +29,6 @@ public abstract class Piece {
         if (simulated && board1.board[newPosition[0]][newPosition[1]] != null && board1.board[newPosition[0]][newPosition[1]].color != this.color) {
             this.copyOfCaptured = board1.board[newPosition[0]][newPosition[1]];
         }
-
 
         if (simulated || checkIfValidMove(newPosition)) {
             if (board1.board[newPosition[0]][newPosition[1]] != null && board1.board[newPosition[0]][newPosition[1]].color != board1.board[this.pos[0]][this.pos[1]].color) {
@@ -108,8 +107,11 @@ public abstract class Piece {
         int[] proposedMove;
         ArrayList<int[]> validMoves = new ArrayList<>();
         int max;
-        if (this.getClass().getSimpleName().equals("King") || this.getClass().getSimpleName().equals("Knight") || this.getClass().getSimpleName().equals("Pawn")) {
+        if (this.getClass().getSimpleName().equals("King") || this.getClass().getSimpleName().equals("Knight") || (this.getClass().getSimpleName().equals("Pawn") && this.color == 'w' && this.pos[0] != 1) || (this.getClass().getSimpleName().equals("Pawn") && this.color == 'b' && this.pos[0] != 7)) {
             max = 2;
+        } else if (this.getClass().getSimpleName().equals("Pawn")) {
+            max = 3;
+            this.pushedTwo = true;
         } else {
             max = 7;
         }
@@ -120,12 +122,7 @@ public abstract class Piece {
                 proposedMove = addition(this.pos, multiply(ints, j));
 
                 //Check if move is out of bounds
-                if (
-                        proposedMove[0] < 8 &&
-                                proposedMove[1] < 8 &&
-                                proposedMove[0] >= 0 &&
-                                proposedMove[1] >= 0
-                ) {
+                if (proposedMove[0] < 8 && proposedMove[1] < 8 && proposedMove[0] >= 0 && proposedMove[1] >= 0) {
                     //Check if there's a piece in the way
                     if (board1.board[proposedMove[0]][proposedMove[1]] == null) {
                         if (simulated) {
