@@ -16,7 +16,8 @@ public class Board {
     public void setPieces() {
         //set all the pieces on the board
         createPiece("Pawn", 'w', new int[]{0,1});
-//        createPiece("Queen", 'b', new int[]{0,1});
+        createPiece("Pawn", 'b', new int[]{1,3});
+
 
         createPiece("King", 'w', new int[]{0,0});
         createPiece("King", 'b', new int[]{7,7});

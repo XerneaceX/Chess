@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7a2d98-9810-4ff5-ad3e-0dcbf96a15ca" name="Changes" comment="Pawn 2 square movement implemented">
+    <list default="true" id="cb7a2d98-9810-4ff5-ad3e-0dcbf96a15ca" name="Changes" comment="Reversed printBoard() method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/players/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +201,7 @@
       <workItem from="1729264504129" duration="24000" />
       <workItem from="1729357962024" duration="159000" />
       <workItem from="1729457575145" duration="663000" />
-      <workItem from="1729466256317" duration="2696000" />
+      <workItem from="1729466256317" duration="8557000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -264,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729468064173</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Reversed printBoard() method">
+      <option name="closed" value="true" />
+      <created>1729469039347</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1729469039347</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +289,8 @@
     <MESSAGE value="Added a method to check if the king is in check" />
     <MESSAGE value="Started implementing UI" />
     <MESSAGE value="Pawn 2 square movement implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pawn 2 square movement implemented" />
+    <MESSAGE value="Reversed printBoard() method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reversed printBoard() method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

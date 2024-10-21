@@ -1,6 +1,7 @@
 package game.pieces;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static game.Board.black;
 import static game.Board.white;
@@ -14,7 +15,7 @@ public abstract class Piece {
     public boolean captured;
     private Piece copyOfCaptured;
 
-    public boolean enPassant, pushedTwo, justPushedTwo;
+    public boolean justPushedTwo;
 
     public Piece(int[] pos, char color) {
         this.pos = pos;
@@ -111,7 +112,7 @@ public abstract class Piece {
             max = 2;
         } else if (this.getClass().getSimpleName().equals("Pawn")) {
             max = 3;
-            this.pushedTwo = true;
+            this.justPushedTwo = true;
         } else {
             max = 7;
         }
@@ -161,7 +162,7 @@ public abstract class Piece {
     }
 
     public void isCaptured() {
-        System.out.println(this.getClass().getSimpleName() + " is captured");
+//        System.out.println(this.getClass().getSimpleName() + " is captured");
         this.captured = true;
     }
 

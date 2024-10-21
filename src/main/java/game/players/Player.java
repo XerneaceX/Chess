@@ -23,8 +23,7 @@ public class Player {
         }
     }
 
-    public ArrayList<int[][]> getEnemyControlledSquares()
-    {
+    public ArrayList<int[][]> getEnemyControlledSquares() {
         ArrayList<int[][]> controlledSquares = new ArrayList<>();
         //Make a list of all controlled squares
         for (int x = 0; x < 8; x++) {
@@ -37,7 +36,7 @@ public class Player {
         return controlledSquares;
     }
 
-    public boolean kingIsInCheck(){
+    public boolean kingIsInCheck() {
         getKingPos();
 
         for (int[][] moves : getEnemyControlledSquares()) {
