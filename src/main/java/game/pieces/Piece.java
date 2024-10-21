@@ -107,7 +107,7 @@ public abstract class Piece {
         int[] proposedMove;
         ArrayList<int[]> validMoves = new ArrayList<>();
         int max;
-        if (this.getClass().getSimpleName().equals("King") || this.getClass().getSimpleName().equals("Knight") || (this.getClass().getSimpleName().equals("Pawn") && this.color == 'w' && this.pos[0] != 1) || (this.getClass().getSimpleName().equals("Pawn") && this.color == 'b' && this.pos[0] != 7)) {
+        if (this.getClass().getSimpleName().equals("King") || this.getClass().getSimpleName().equals("Knight") || (this.getClass().getSimpleName().equals("Pawn") && this.color == 'w' && this.pos[1] != 1) || (this.getClass().getSimpleName().equals("Pawn") && this.color == 'b' && this.pos[1] != 7)) {
             max = 2;
         } else if (this.getClass().getSimpleName().equals("Pawn")) {
             max = 3;

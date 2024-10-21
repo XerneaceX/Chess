@@ -10,12 +10,12 @@ public class Pawn extends Piece {
         switch (color){
             case 'w' -> {
                 this.moveArray = new int[][]{
-                        {1, 0},
+                        {0, 1},
                 };
             }
             case 'b' -> {
                 this.moveArray = new int[][]{
-                        {-1, 0},
+                        {0, -1},
                 };
             }
         }

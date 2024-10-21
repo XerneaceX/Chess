@@ -15,11 +15,11 @@ public class Board {
 
     public void setPieces() {
         //set all the pieces on the board
-        createPiece("Pawn", 'w', new int[]{2,0});
-        createPiece("Queen", 'b', new int[]{0,1});
+        createPiece("Pawn", 'w', new int[]{0,1});
+//        createPiece("Queen", 'b', new int[]{0,1});
 
-        this.board[3][6] = new King(new int[]{3, 6}, 'w');
-        this.board[4][4] = new King(new int[]{4, 4}, 'b');
+        createPiece("King", 'w', new int[]{0,0});
+        createPiece("King", 'b', new int[]{7,7});
     }
 
     public void createPiece(String pieceType, char color, int[] pos) {
@@ -40,10 +40,10 @@ public class Board {
 
     public void printBoard() {
         System.out.println("-------------------------------------");
-        for (int x = 0; x < this.board[0].length; x++) {
-            for (int y = 0; y < this.board[x].length; y++) {
-                if (this.board[x][y] != null) {
-                    System.out.print(" " + this.board[x][y].getClass().getSimpleName() + " ");
+        for (int Ypos = 7; Ypos >= 0; Ypos--) {
+            for (int Xpos = 0; Xpos < 8; Xpos++) {
+                if (this.board[Xpos][Ypos] != null) {
+                    System.out.print(" " + this.board[Xpos][Ypos].getClass().getSimpleName() + " ");
                 } else System.out.print(" none ");
             }
             System.out.println("\n");
