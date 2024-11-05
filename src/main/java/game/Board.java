@@ -15,12 +15,11 @@ public class Board {
 
     public void setPieces() {
         //set all the pieces on the board
-        createPiece("Pawn", 'w', new int[]{0,1});
-        createPiece("Pawn", 'b', new int[]{1,3});
-
-
-        createPiece("King", 'w', new int[]{0,0});
-        createPiece("King", 'b', new int[]{7,7});
+        createPiece("Rook", 'b', new int[]{6,7});
+        createPiece("King", 'b', new int[]{0,0});
+        createPiece("King" , 'w' , new int[]{4,0});
+        createPiece("Rook", 'w', new int[]{7,0});
+        createPiece("Pawn", 'w', new int[]{0,6});
     }
 
     public void createPiece(String pieceType, char color, int[] pos) {
@@ -35,7 +34,7 @@ public class Board {
         }
     }
 
-    public void createPiece(String pieceType, char color, int x, int y) {
+    private void createPiece(String pieceType, char color, int x, int y) {
         createPiece(pieceType, color, new int[]{x, y});
     }
 
@@ -55,6 +54,12 @@ public class Board {
     public void movePiece(int[] oldPosition, int[] newPosition) {
         this.board[oldPosition[0]][oldPosition[1]].move(newPosition, false);
         printBoard();
+        white.checkIfCheckmate();
+        black.checkIfCheckmate();
+    }
+
+    public void movePiece(int oldX, int oldY, int newX, int newY) {
+        movePiece(new int[]{oldX, oldY}, new int[]{newX, newY});
     }
 
 

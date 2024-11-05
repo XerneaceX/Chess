@@ -6,8 +6,7 @@ public class Main {
         board1 = new Board();
         board1.setPieces();
         board1.printBoard();
-
-        board1.movePiece(new int[]{0,1}, new int[]{0,3});
-        board1.movePiece(new int[]{1,3}, new int[]{0,2});
+        board1.movePiece(new int[]{0,6}, new int[]{0,7});
+        board1.movePiece(new int[]{0,7}, new int[]{7,0});
     }
 }

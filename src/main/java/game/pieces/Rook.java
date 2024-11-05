@@ -1,5 +1,7 @@
 package game.pieces;
 
+import static game.Main.board1;
+
 public class Rook extends Piece {
     public Rook(int[] pos, char color) {
         super(pos, color);
@@ -10,12 +12,5 @@ public class Rook extends Piece {
                 {0,-1},
         };
     }
-
-
-    @Override
-    public void capture() {
-
-    }
-
 
 }

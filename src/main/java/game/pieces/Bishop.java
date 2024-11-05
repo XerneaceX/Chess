@@ -10,11 +10,6 @@ public class Bishop extends Piece {
                 {-1,1},
                 {-1,-1},
         };
-
-    }
-
-    @Override
-    public void capture() {
     }
 
 }

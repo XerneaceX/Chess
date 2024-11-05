@@ -1,7 +1,6 @@
 package game.pieces;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static game.Board.black;
 import static game.Board.white;
@@ -47,6 +46,8 @@ public abstract class Piece {
 
             }
             this.pos = newPosition;
+            if (!simulated) this.moved = true;
+
         }
     }
 
@@ -66,6 +67,7 @@ public abstract class Piece {
             this.copyOfCaptured = null;
         }
         this.pos = newPosition;
+        this.moved = false;
     }
 
     public void revertMove(int[] newPosition) {
@@ -98,13 +100,11 @@ public abstract class Piece {
     }
 
 
-    public abstract void capture();
-
     public int[][] getMoveArray() {
         return this.moveArray;
     }
 
-    public int[][] getValidMoves(int[][] moveArray, boolean simulated) {
+    public int[][] getPseudoValidMoves(int[][] moveArray, boolean simulated) {
         int[] proposedMove;
         ArrayList<int[]> validMoves = new ArrayList<>();
         int max;
@@ -114,7 +114,7 @@ public abstract class Piece {
             max = 3;
             this.justPushedTwo = true;
         } else {
-            max = 7;
+            max = 8;
         }
 
         for (int[] ints : moveArray) {
@@ -151,7 +151,7 @@ public abstract class Piece {
     public boolean checkIfValidMove(int[] newPosition) {
 
         //check if newPosition is in the valid moves
-        for (int[] validMove : getValidMoves(this.moveArray, false)) {
+        for (int[] validMove : getPseudoValidMoves(this.moveArray, false)) {
             if (newPosition[0] == validMove[0] && newPosition[1] == validMove[1]) {
                 System.out.println("VALID MOVE!");
                 return true;
@@ -186,6 +186,12 @@ public abstract class Piece {
             newMatrix1[i] += newMatrix2[i];
         }
         return newMatrix1;
+    }
+
+    public void rock(int[] newPosition){
+        board1.board[newPosition[0]][newPosition[1]] = board1.board[this.pos[0]][this.pos[1]]; //move piece
+        board1.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
+        board1.board[newPosition[0]][newPosition[1]].moved = true;
     }
 
 }
