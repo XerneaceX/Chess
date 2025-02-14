@@ -1,48 +1,122 @@
 package game.pieces;
 
+import game.Game;
+import game.players.Player;
+
 import java.util.ArrayList;
 
-import static game.Board.black;
-import static game.Board.white;
-import static game.Main.board1;
-
 public abstract class Piece {
-    public int[] pos;
-    public char color;
-    public boolean moved;
-    public int[][] moveArray;
-    public boolean captured;
+    private int[] pos;
+    private char color;
+    private boolean moved;
+    private int[][] moveArray;
+    private boolean captured;
     private Piece copyOfCaptured;
+    private Player belongsTo;
+    private Player enemy;
+    private Game game;
 
     public boolean justPushedTwo;
 
-    public Piece(int[] pos, char color) {
+    public Piece(int[] pos, Player player, Game game) {
         this.pos = pos;
-        this.color = color;
         this.moved = false;
         this.copyOfCaptured = null;
         this.captured = false;
+        this.game = game;
+        if (player.getColor() == 'w') {
+            this.color = 'w';
+        }
+        else if (player.getColor() == 'b') {
+            this.color = 'b';
+        }
     }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public int[] getPos() {
+        return pos;
+    }
+
+    public void setPos(int[] pos) {
+        this.pos = pos;
+    }
+
+    public char getColor() {
+        return color;
+    }
+
+    public void setColor(char color) {
+        this.color = color;
+    }
+
+    public boolean isMoved() {
+        return moved;
+    }
+
+    public void setMoved(boolean moved) {
+        this.moved = moved;
+    }
+
+    public void setMoveArray(int[][] moveArray) {
+        this.moveArray = moveArray;
+    }
+
+    public void setCaptured(boolean captured) {
+        this.captured = captured;
+    }
+
+    public Piece getCopyOfCaptured() {
+        return copyOfCaptured;
+    }
+
+    public void setCopyOfCaptured(Piece copyOfCaptured) {
+        this.copyOfCaptured = copyOfCaptured;
+    }
+
+    public Player getBelongsTo() {
+        return belongsTo;
+    }
+
+    public void setBelongsTo(Player belongsTo) {
+        this.belongsTo = belongsTo;
+    }
+
+    public Player getEnemy() {
+        return enemy;
+    }
+
+    public void setEnemy(Player enemy) {
+        this.enemy = enemy;
+    }
+
+    protected abstract void defineMoveArray();
 
     public void move(int[] newPosition, boolean simulated) {
 
-        if (simulated && board1.board[newPosition[0]][newPosition[1]] != null && board1.board[newPosition[0]][newPosition[1]].color != this.color) {
-            this.copyOfCaptured = board1.board[newPosition[0]][newPosition[1]];
+        if (simulated && game.board[newPosition[0]][newPosition[1]] != null && game.board[newPosition[0]][newPosition[1]].color != this.color) {
+            this.copyOfCaptured = game.board[newPosition[0]][newPosition[1]];
         }
 
         if (simulated || checkIfValidMove(newPosition)) {
-            if (board1.board[newPosition[0]][newPosition[1]] != null && board1.board[newPosition[0]][newPosition[1]].color != board1.board[this.pos[0]][this.pos[1]].color) {
+            if (game.board[newPosition[0]][newPosition[1]] != null && game.board[newPosition[0]][newPosition[1]].color != game.board[this.pos[0]][this.pos[1]].color) {
 
-                board1.board[newPosition[0]][newPosition[1]].isCaptured(); //capture piece on attacked square
-                board1.board[newPosition[0]][newPosition[1]] = board1.board[this.pos[0]][this.pos[1]]; //move piece
-                board1.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
-                board1.board[newPosition[0]][newPosition[1]].moved = true;
+                game.board[newPosition[0]][newPosition[1]].isCaptured(); //capture piece on attacked square
+                game.board[newPosition[0]][newPosition[1]] = game.board[this.pos[0]][this.pos[1]]; //move piece
+                game.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
+                game.board[newPosition[0]][newPosition[1]].moved = true;
 
-            } else if (board1.board[newPosition[0]][newPosition[1]] == null) {
+            } else if (game.board[newPosition[0]][newPosition[1]] == null) {
 
-                board1.board[newPosition[0]][newPosition[1]] = board1.board[this.pos[0]][this.pos[1]]; //move piece
-                board1.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
-                board1.board[newPosition[0]][newPosition[1]].moved = true;
+                game.board[newPosition[0]][newPosition[1]] = game.board[this.pos[0]][this.pos[1]]; //move piece
+                game.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
+                game.board[newPosition[0]][newPosition[1]].moved = true;
 
             }
             this.pos = newPosition;
@@ -55,15 +129,15 @@ public abstract class Piece {
         copyOfCaptured = this.copyOfCaptured;
 
         if (copyOfCaptured == null) {
-            board1.board[newPosition[0]][newPosition[1]] = board1.board[this.pos[0]][this.pos[1]]; //move piece
-            board1.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
-            board1.board[newPosition[0]][newPosition[1]].moved = true;
+            game.board[newPosition[0]][newPosition[1]] = game.board[this.pos[0]][this.pos[1]]; //move piece
+            game.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
+            game.board[newPosition[0]][newPosition[1]].moved = true;
         } else {
-            board1.board[newPosition[0]][newPosition[1]] = board1.board[this.pos[0]][this.pos[1]]; //move piece
-            board1.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
-            board1.board[newPosition[0]][newPosition[1]].moved = true;
+            game.board[newPosition[0]][newPosition[1]] = game.board[this.pos[0]][this.pos[1]]; //move piece
+            game.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
+            game.board[newPosition[0]][newPosition[1]].moved = true;
 
-            board1.board[this.pos[0]][this.pos[1]] = this.copyOfCaptured; //restores captured piece
+            game.board[this.pos[0]][this.pos[1]] = this.copyOfCaptured; //restores captured piece
             this.copyOfCaptured = null;
         }
         this.pos = newPosition;
@@ -83,13 +157,13 @@ public abstract class Piece {
         move(newPosition, true);
         switch (this.color) {
             case 'w' -> {
-                if (white.kingIsInCheck()) {
+                if (game.white.kingIsInCheck()) {
                     revertMove(oldPos, null);
                     return false;
                 }
             }
             case 'b' -> {
-                if (black.kingIsInCheck()) {
+                if (game.black.kingIsInCheck()) {
                     revertMove(oldPos, null);
                     return false;
                 }
@@ -125,7 +199,7 @@ public abstract class Piece {
                 //Check if move is out of bounds
                 if (proposedMove[0] < 8 && proposedMove[1] < 8 && proposedMove[0] >= 0 && proposedMove[1] >= 0) {
                     //Check if there's a piece in the way
-                    if (board1.board[proposedMove[0]][proposedMove[1]] == null) {
+                    if (game.board[proposedMove[0]][proposedMove[1]] == null) {
                         if (simulated) {
                             validMoves.add(proposedMove);
                         } else if (simulateMove(proposedMove)) {
@@ -133,7 +207,7 @@ public abstract class Piece {
                         }
                     } else {
                         //Check if it's a capture
-                        if (board1.board[proposedMove[0]][proposedMove[1]].color != this.color) {
+                        if (game.board[proposedMove[0]][proposedMove[1]].color != this.color) {
                             if (simulated) {
                                 validMoves.add(proposedMove);
                             } else if (simulateMove(proposedMove)) {
@@ -189,9 +263,9 @@ public abstract class Piece {
     }
 
     public void rock(int[] newPosition){
-        board1.board[newPosition[0]][newPosition[1]] = board1.board[this.pos[0]][this.pos[1]]; //move piece
-        board1.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
-        board1.board[newPosition[0]][newPosition[1]].moved = true;
+        game.board[newPosition[0]][newPosition[1]] = game.board[this.pos[0]][this.pos[1]]; //move piece
+        game.board[this.pos[0]][this.pos[1]] = null; //remove piece from old position
+        game.board[newPosition[0]][newPosition[1]].moved = true;
     }
 
 }

@@ -1,24 +1,30 @@
 package game.pieces;
 
+import game.Game;
+import game.players.Player;
+
 import java.util.ArrayList;
 
-import static game.Main.board1;
-
 public class Pawn extends Piece {
-    public Pawn(int[] pos, char color) {
-        super(pos, color);
-        this.justPushedTwo = false;
 
-        switch (color) {
+
+    public Pawn(int[] pos, Player player, Game game) {
+        super(pos, player, game);
+        justPushedTwo = false;
+    }
+
+    @Override
+    protected void defineMoveArray() {
+        switch (getColor()) {
             case 'w' -> {
-                this.moveArray = new int[][]{
-                        {0, 1},
-                };
+                setMoveArray(new int[][]{
+                        {0, -1},
+                });
             }
             case 'b' -> {
-                this.moveArray = new int[][]{
-                        {0, -1},
-                };
+                setMoveArray(new int[][]{
+                        {0, 1},
+                });
             }
         }
     }
@@ -28,55 +34,45 @@ public class Pawn extends Piece {
         ArrayList<int[]> moveArray = new ArrayList<>();
 
         //check if en passant is out of bounds, then check if there's a pawn on the side of the attacking piece. For each of them, check if they're the opposite color and justPushed
-        if ((this.pos[0] - 1 >= 0 && this.pos[1] - 1 >= 0) && (board1.board[this.pos[0] - 1][this.pos[1]] != null && board1.board[this.pos[0] - 1][this.pos[1]].justPushedTwo) || (board1.board[this.pos[0] + 1][this.pos[1]] != null && board1.board[this.pos[0] + 1][this.pos[1]].justPushedTwo)) {
-            switch (color) {
+        if ((getPos()[0] - 1 >= 0 && getPos()[1] - 1 >= 0) && (getGame().board[getPos()[0] - 1][getPos()[1]] != null && getGame().board[getPos()[0] - 1][getPos()[1]].justPushedTwo) || (getGame().board[getPos()[0] + 1][getPos()[1]] != null && getGame().board[getPos()[0] + 1][getPos()[1]].justPushedTwo)) {
+            switch (getColor()) {
                 case 'w' -> {
                     moveArray.add(new int[]{0, 1});
-                    moveArray.add(new int[]{newPosition[0] - this.pos[0], 1});
-                    moveArray.add(new int[]{newPosition[0] - this.pos[0], 0});
+                    moveArray.add(new int[]{newPosition[0] - getPos()[0], 1});
+                    moveArray.add(new int[]{newPosition[0] - getPos()[0], 0});
                 }
                 case 'b' -> {
                     moveArray.add(new int[]{0, -1});
-                    moveArray.add(new int[]{newPosition[0] - this.pos[0], -1});
-                    moveArray.add(new int[]{newPosition[0] - this.pos[0], 0});
+                    moveArray.add(new int[]{newPosition[0] - getPos()[0], -1});
+                    moveArray.add(new int[]{newPosition[0] - getPos()[0], 0});
                 }
             }
-            this.moveArray = moveArray.toArray(new int[moveArray.size()][]);
-            super.move(new int[]{newPosition[0], this.pos[1]}, simulated);
+            setMoveArray(moveArray.toArray(new int[moveArray.size()][]));
+            super.move(new int[]{newPosition[0], getPos()[1]}, simulated);
         }
-        if ((this.pos[0] - 1 >= 0 && this.pos[1] - 1 >= 0) && (board1.board[newPosition[0]][newPosition[1]] != null && board1.board[newPosition[0]][newPosition[1]].getClass().getSimpleName().equals("Pawn") && board1.board[newPosition[0]][newPosition[1]].color != color)) {
-            switch (color) {
+        if ((getPos()[0] - 1 >= 0 && getPos()[1] - 1 >= 0) && (getGame().board[newPosition[0]][newPosition[1]] != null && getGame().board[newPosition[0]][newPosition[1]].getClass().getSimpleName().equals("Pawn") && getGame().board[newPosition[0]][newPosition[1]].getColor() != getColor())) {
+            switch (getColor()) {
                 case 'w' -> {
                     moveArray.add(new int[]{0, 1});
-                    moveArray.add(new int[]{newPosition[0] - this.pos[0], 1});
+                    moveArray.add(new int[]{newPosition[0] - getPos()[0], 1});
                 }
                 case 'b' -> {
                     moveArray.add(new int[]{0, -1});
-                    moveArray.add(new int[]{newPosition[0] - this.pos[0], -1});
+                    moveArray.add(new int[]{newPosition[0] - getPos()[0], -1});
                 }
             }
-            this.moveArray = moveArray.toArray(new int[moveArray.size()][]);
+            setMoveArray(moveArray.toArray(new int[moveArray.size()][]));
         }
         super.move(newPosition, simulated);
-        if (!simulated) switch (color) {
-            case 'w' -> {
-                this.moveArray = new int[][]{
-                        {0, 1},
-                };
-            }
-            case 'b' -> {
-                this.moveArray = new int[][]{
-                        {0, -1},
-                };
-            }
-        }
-        if (this.pos[1] == 7 || this.pos[1] == 0) {
+        if (!simulated) defineMoveArray();
+        if (getPos()[1] == 7 || getPos()[1] == 0) {
             promote();
         }
     }
-    private void promote(){
-        board1.board[this.pos[0]][this.pos[1]] = null;
-        board1.createPiece("Queen", this.color, this.pos);
+
+    private void promote() {
+        getGame().board[getPos()[0]][getPos()[1]] = null;
+        getGame().addPiece("Queen", getBelongsTo(), getPos());
     }
 
 }

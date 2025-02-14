@@ -1,21 +1,43 @@
 package game.players;
 
+import game.Game;
+
 import java.util.ArrayList;
 
-import static game.Main.board1;
-
 public class Player {
-    public char color;
-    public int[] kingPos;
+    private char color;
+    private int[] kingPos;
+    private Game game;
 
-    public Player(char color) {
+    public Player(char color , Game game) {
         this.color = color;
+        this.game = game;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public char getColor() {
+        return color;
+    }
+
+    public void setColor(char color) {
+        this.color = color;
+    }
+
+    public void setKingPos(int[] kingPos) {
+        this.kingPos = kingPos;
     }
 
     public void getKingPos() {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                if (board1.board[x][y] != null && board1.board[x][y].getClass().getSimpleName().equals("King") && board1.board[x][y].color == this.color) {
+                if (getGame().board[x][y] != null && getGame().board[x][y].getClass().getSimpleName().equals("King") && getGame().board[x][y].getColor() == this.color) {
                     this.kingPos = new int[]{x, y};
                 }
             }
@@ -27,8 +49,8 @@ public class Player {
         //Make a list of all controlled squares
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                if (board1.board[x][y] != null && board1.board[x][y].color != this.color) {
-                    controlledSquares.add(board1.board[x][y].getPseudoValidMoves(board1.board[x][y].getMoveArray(), true));
+                if (getGame().board[x][y] != null && getGame().board[x][y].getColor() != this.color) {
+                    controlledSquares.add(getGame().board[x][y].getPseudoValidMoves(getGame().board[x][y].getMoveArray(), true));
                 }
             }
         }
@@ -55,11 +77,11 @@ public class Player {
     public void checkIfCheckmate() {
         getKingPos();
         final int[] kPos = new int[]{this.kingPos[0], this.kingPos[1]};
-        int[][] moves = (board1.board[kPos[0]][kPos[1]]
+        int[][] moves = (getGame().board[kPos[0]][kPos[1]]
                 .getPseudoValidMoves(new int[][]{{-1, -1}, {-1, 0}, {0, -1}, {1, 0}, {0, 1}, {1, 1}, {-1, 1}, {1, -1}}, true));
         boolean hasValidMoves = true;
         for (int[] move : moves) {
-            hasValidMoves = (board1.board[kPos[0]][kPos[1]].checkIfValidMove(move));
+            hasValidMoves = (getGame().board[kPos[0]][kPos[1]].checkIfValidMove(move));
             if (hasValidMoves) {
                 break;
             }

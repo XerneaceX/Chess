@@ -4,15 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7a2d98-9810-4ff5-ad3e-0dcbf96a15ca" name="Changes" comment="Reversed printBoard() method">
+    <list default="true" id="cb7a2d98-9810-4ff5-ad3e-0dcbf96a15ca" name="Changes" comment="Implemented piece movements">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/EventListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Queen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/players/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +43,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;XerneaceX&quot;
-  }
+  &quot;lastFilter&quot;: {}
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -68,17 +77,21 @@
     "Application.game.Main.executor": "Run",
     "Application.org.example.chess.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Bouch/ProgProjects/Chess",
+    "last_opened_file_path": "/home/felix/ProgProjects/Chess",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "CodeWithMe",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -152,8 +165,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
       </set>
     </attachedChunks>
   </component>
@@ -201,7 +214,49 @@
       <workItem from="1729264504129" duration="24000" />
       <workItem from="1729357962024" duration="159000" />
       <workItem from="1729457575145" duration="663000" />
-      <workItem from="1729466256317" duration="8557000" />
+      <workItem from="1729466256317" duration="8601000" />
+      <workItem from="1729531505311" duration="15000" />
+      <workItem from="1729533222383" duration="140000" />
+      <workItem from="1729549357160" duration="123000" />
+      <workItem from="1729695501359" duration="450000" />
+      <workItem from="1729704404983" duration="541000" />
+      <workItem from="1729705704644" duration="5000" />
+      <workItem from="1730131843889" duration="4000" />
+      <workItem from="1730132401139" duration="3263000" />
+      <workItem from="1730135878859" duration="7000" />
+      <workItem from="1730157030443" duration="54000" />
+      <workItem from="1730224612913" duration="3805000" />
+      <workItem from="1730296883285" duration="2038000" />
+      <workItem from="1730298984151" duration="10000" />
+      <workItem from="1730300230094" duration="740000" />
+      <workItem from="1730382660783" duration="2000" />
+      <workItem from="1730391237795" duration="885000" />
+      <workItem from="1730463607396" duration="47000" />
+      <workItem from="1730468668931" duration="294000" />
+      <workItem from="1730470044256" duration="33000" />
+      <workItem from="1730474047013" duration="2441000" />
+      <workItem from="1730551699944" duration="1495000" />
+      <workItem from="1730734738397" duration="431000" />
+      <workItem from="1730736024494" duration="44000" />
+      <workItem from="1730813275727" duration="2765000" />
+      <workItem from="1730819120495" duration="1781000" />
+      <workItem from="1730832575271" duration="77000" />
+      <workItem from="1730832698537" duration="124000" />
+      <workItem from="1730832941939" duration="16000" />
+      <workItem from="1730833250925" duration="39000" />
+      <workItem from="1730834514326" duration="99000" />
+      <workItem from="1731022331506" duration="16000" />
+      <workItem from="1731078042143" duration="257000" />
+      <workItem from="1731082958454" duration="7000" />
+      <workItem from="1731513149746" duration="17000" />
+      <workItem from="1731513927752" duration="23000" />
+      <workItem from="1731686800955" duration="24000" />
+      <workItem from="1732067349850" duration="57000" />
+      <workItem from="1732068857365" duration="56000" />
+      <workItem from="1732071737976" duration="309000" />
+      <workItem from="1732072084458" duration="8000" />
+      <workItem from="1732136360997" duration="17000" />
+      <workItem from="1739489416713" duration="3229000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -275,11 +330,38 @@
       <option name="project" value="LOCAL" />
       <updated>1729469039347</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added enPassant (I'm suffering) NO COLOR VERIFICATION">
+      <option name="closed" value="true" />
+      <created>1729474911215</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729474911215</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implemented piece movements">
+      <option name="closed" value="true" />
+      <created>1730815315224</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730815315224</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
@@ -290,7 +372,10 @@
     <MESSAGE value="Started implementing UI" />
     <MESSAGE value="Pawn 2 square movement implemented" />
     <MESSAGE value="Reversed printBoard() method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reversed printBoard() method" />
+    <MESSAGE value="Added enPassant (I'm suffering)" />
+    <MESSAGE value="Added enPassant (I'm suffering) NO COLOR VERIFICATION" />
+    <MESSAGE value="Implemented piece movements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented piece movements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -305,5 +390,16 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="board1" language="JAVA" />
+        <watch expression="moves" />
+        <watch expression="        //check if en passant is out of bounds, then check if there's a pawn on the side of the attacking piece. For each of them, check if they're the opposite color and justPushed&#10;" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
